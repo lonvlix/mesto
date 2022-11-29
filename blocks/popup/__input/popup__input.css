@@ -1,0 +1,28 @@
+.popup__input {
+    border: 0;
+    font-size: 14px;
+    padding-bottom: 8px;
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+  .popup__input:first-child {
+    margin-bottom: 29px;
+}
+  
+  .popup__input:nth-child(2) {
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 426px) {
+  .popup__input:nth-child(2) {
+    margin-bottom: 43px;
+  }
+}
+  
+  @media screen and (max-width: 426px) {
+    .popup__input:first-child {
+      margin-bottom: 35px;
+    }
+}
+  

@@ -1,0 +1,8 @@
+.element__info {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 25px 20px 25px 20px;
+    align-items: center;
+}

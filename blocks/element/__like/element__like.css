@@ -1,0 +1,11 @@
+.element__like {
+    background-image: url(../../../images/Vector.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity .2s linear;
+    min-width: 22px;
+    min-height: 19px;
+    cursor: pointer;
+    border: 0;
+    padding: 0; 
+}
