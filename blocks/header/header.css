@@ -8,5 +8,6 @@
     .header {
       min-height: 56px;
       padding-top: 28px;
+      margin-top: 0;
    }  
 }
