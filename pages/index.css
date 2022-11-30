@@ -1,9 +1,6 @@
 @import url(../blocks/page/page.css);
 
 @import url(../vendor/fonts.css);
-@import url(../vendor/fonts/Inter-Black.woff2);
-@import url(../vendor/fonts/Inter-Medium.woff2);
-@import url(../vendor/fonts/Inter-Regular.woff2);
 @import url(../vendor/normalize.css);
 
 @import url(../blocks/header/header.css);

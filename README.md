@@ -5,4 +5,4 @@
 
 В проекте были использованы гриды, списки, кнопки, а также javascript.
 
-[Ссылка на сайт](lonvlix.github.io)
+[Ссылка на сайт](https://lonvlix.github.io/mesto/)
