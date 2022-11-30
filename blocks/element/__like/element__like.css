@@ -1,5 +1,5 @@
 .element__like {
-    background-image: url(../../../images/Vector.svg);
+    background-image: url(../../../images/like.png);
     background-repeat: no-repeat;
     background-position: center;
     transition: opacity .2s linear;
