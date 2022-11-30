@@ -1,9 +1,25 @@
 .elements {
-    margin-top: 51px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 282px));
+  grid-template-rows: repeat(2, auto);
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  grid-gap: 20px 17px;
+  margin-top: 51px;
+}
+
+@media screen and (max-width: 768px) {
+.elements {
+    justify-content: center;
+    grid-template-columns: repeat(2, minmax(auto, 282px));
+    grid-template-rows: repeat(3, auto);
+ }
 }
 
 @media screen and (max-width: 426px) {
-  .elements {
-      margin-top: 36px;
-  }
+.elements {
+    grid-template-columns: minmax(auto, 282px);
+    margin-top: 36px;
+ }
 }
