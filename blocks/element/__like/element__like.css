@@ -1,11 +1,11 @@
 .element__like {
-    background-image: url(../../../images/like.png);
+    background-image: url(../../../images/like.svg);
     background-repeat: no-repeat;
     background-position: center;
-    transition: opacity .2s linear;
     min-width: 22px;
     min-height: 19px;
     cursor: pointer;
     border: 0;
-    padding: 0; 
+    padding: 0;
+    transition: opacity .5s ease-out;
 }
