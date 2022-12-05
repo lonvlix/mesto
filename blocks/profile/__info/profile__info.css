@@ -19,5 +19,6 @@
     .profile__info {
       padding-bottom: 36px;
       margin: 0;
+      padding-top: 0;
     }
 }

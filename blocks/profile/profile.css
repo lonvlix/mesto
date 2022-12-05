@@ -5,8 +5,10 @@
 }
 
 @media screen and (max-width: 768px) {
-    .profile {
-      text-align: center;
-      flex-direction: column;
-    }
+  .profile {
+    text-align: center;
+    flex-direction: column;
+    padding-left: 19px;
+    padding-right: 19px;
+  }
 }

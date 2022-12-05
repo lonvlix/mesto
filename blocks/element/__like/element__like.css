@@ -7,5 +7,10 @@
     cursor: pointer;
     border: 0;
     padding: 0;
+    background-color: transparent;
     transition: opacity .5s ease-out;
+}
+
+.element__like:not(.element__like_active):hover {
+    opacity: .5;
 }

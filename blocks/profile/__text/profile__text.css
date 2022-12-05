@@ -8,3 +8,11 @@
     text-overflow: ellipsis;
     max-width: 350px;
 }
+
+@media screen and (max-width: 768px) {
+.profile__text {
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 282px;
+ }
+}

@@ -9,16 +9,15 @@
     max-width: 350px;
     display: inline-block;
     vertical-align: middle;
-    padding-bottom: 16px;
-    padding-right: 18px;
-    
+    padding-bottom: 14px;
+    padding-right: 10px;
 }
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 468px) {
     .profile__name {
       font-size: 27px;
       max-width: 200px;
       line-height: 33px;
       margin-left: 24px;
-    }
+  }
 }
