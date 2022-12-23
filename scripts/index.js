@@ -27,7 +27,6 @@ const initialCards = [
 
 const elementsContainer = document.querySelector('.elements');
 
-
 const elementInfo = initialCards.map(function (item) {
 return {
   name: item.name,
