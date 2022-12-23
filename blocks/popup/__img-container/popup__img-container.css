@@ -1,0 +1,8 @@
+.popup__img-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #FFF;
+    background: rgba(0, 0, 0, 0);
+}
