@@ -84,9 +84,9 @@ function submitAddCardForm (evt) {
 };
 
 const popup = document.querySelector('.popup');
-const popupAdd = document.querySelector('.popup__add');
-const popupEdit = document.querySelector('.popup__edit');
-const popupImage = document.querySelector('.popup__image');
+const popupAdd = document.querySelector('.popup_add');
+const popupEdit = document.querySelector('.popup_edit');
+const popupImage = document.querySelector('.popup_image');
 const popupImagePlace = document.querySelector('.popup__img-place');
 const popupImageName = document.querySelector('.popup__name');
 const closePopupButtons = document.querySelectorAll('.popup__close');
