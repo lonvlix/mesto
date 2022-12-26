@@ -44,12 +44,7 @@ const initialCards = [
 
 const elementsContainer = document.querySelector('.elements');
 
-const elementInfo = initialCards.map(function (item) {
-  return {
-    name: item.name,
-    link: item.link,
-  };
-});
+const elementInfo = initialCards.map;
 
 const createCard = (cardLink, cardName) => {
 
@@ -85,7 +80,7 @@ const addCard = (cardNew) => {
   elementsContainer.prepend(cardNew);
 };
 
-elementInfo.forEach((item) => {
+initialCards.forEach((item) => {
   addCard(createCard(item.link, item.name));
 });
 
@@ -112,7 +107,7 @@ function closePopup(item) {
 profileEditOpenButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInput.value = userProfile.textContent;
-  TextInput.value = userText.textContent;
+  textInput.value = userText.textContent;
 });
 
 formAddOpenButton.addEventListener('click', function() {
@@ -123,7 +118,7 @@ function submitEditProfileForm (evt) {
   evt.preventDefault();
 
 userProfile.textContent = nameInput.value;
-userText.textContent = TextInput.value;
+userText.textContent = textInput.value;
 closePopup(popupEdit);
 };
 
