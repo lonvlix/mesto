@@ -67,7 +67,7 @@ const elementcardName = elementCard.querySelector('.element__name');
     event.target.classList.toggle('element__like-button_active');
   });
     
-  elementCard.querySelector('.element__image').addEventListener('click', function () {
+  elementCardImage.addEventListener('click', function () {
     openPopup(popupImage);
     popupImagePlace.src = cardLink;
     popupImagePlace.alt = cardName;
