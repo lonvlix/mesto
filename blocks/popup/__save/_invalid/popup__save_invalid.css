@@ -1,0 +1,14 @@
+.popup__save_invalid {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.2);
+    max-width: 358px;
+    height: 46px;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity .2s linear;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
