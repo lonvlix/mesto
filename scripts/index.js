@@ -1,10 +1,10 @@
-const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
 const popupImage = document.querySelector('.popup_image');
 const popupImagePlace = document.querySelector('.popup__img-place');
 const popupImageName = document.querySelector('.popup__name');
-const closePopupButtons = document.querySelectorAll('.popup__close');
+const popupCloseButton = document.querySelectorAll('.popup__close');
 const formAddOpenButton = document.querySelector('.profile__add-button');
 const profileEditOpenButton = document.querySelector('.profile__edit-button');
 const popupEditElement = document.querySelector('.popup__form');
@@ -17,33 +17,6 @@ const popupAddFormLinkInput = document.querySelector('.popup__input_type_link');
 const popupAddFormTitleInput = document.querySelector('.popup__input_type_title');
 const inputElementFields = Array.from(popupAddFormArea.querySelectorAll('.popup__input'));
 const buttonActive = popupAddFormArea.querySelector('.popup__save-button');
-
-const initialCards = [
-  {
-    name: 'Альпы',
-    link: 'https://images.unsplash.com/photo-1671514187753-fce32cc8b3ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=487&q=80'
-  },
-  {
-    name: 'Сан-Франциско',
-    link: 'https://images.unsplash.com/photo-1671167831465-8c3b480f7a3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80'
-  },
-  {
-    name: 'Эстония',
-    link: 'https://images.unsplash.com/photo-1664737061963-862d6a174a3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-  },
-  {
-    name: 'Исландия',
-    link: 'https://images.unsplash.com/photo-1669792245896-0253b9a55560?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80'
-  },
-  {
-    name: 'Каппадокия',
-    link: 'https://images.unsplash.com/photo-1669046638067-644a3685e71b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-  },
-  {
-    name: 'Квалейя',
-    link: 'https://images.unsplash.com/photo-1669745356031-230d593866b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-  },
-];
 
 const elementsContainer = document.querySelector('.elements');
 
@@ -127,7 +100,7 @@ userText.textContent = textInput.value;
 closePopup(popupEdit);
 };
 
-closePopupButtons.forEach(btn => btn.addEventListener('click', () => {
+popupCloseButton.forEach(btn => btn.addEventListener('click', () => {
   const popup = btn.closest('.popup');
   closePopup(popup);
 }));
@@ -139,13 +112,14 @@ function closePopupEsc(evt) {
   };
 };
 
-popup.forEach((popups) => {
-  popups.addEventListener('mousedown', (evt) => { 
-      if (evt.target.classList.contains('popup_opened')) { 
-          closePopup(popups); 
+popups.forEach((popups) => {
+  popups.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popups);
       };
   });
 });
 
 popupAdd.addEventListener('submit', submitAddCardForm);
 popupEdit.addEventListener('submit', submitEditProfileForm);
+enableValidation(validationConfig);
