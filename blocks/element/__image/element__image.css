@@ -3,4 +3,9 @@
     width: 282px;
     height: 282px;
     display: flex;
+    transition: opacity .5s ease-out;
+}
+
+.element__image:not(.element__like_active):hover {
+    opacity: .5;
 }
