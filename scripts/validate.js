@@ -33,16 +33,15 @@ const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => !inputElement.validity.valid);
 };
 
-const toggleButtonState = (inputList, buttonElement, config) => {
-    if (hasInvalidInput(inputList)) {
-        buttonElement.classList.remove(config.submitButtonSelector);
+const toggleButtonState = (inputList, buttonElement, config) => { 
+    if (hasInvalidInput(inputList)) { 
         buttonElement.classList.add(config.inactiveButtonClass);
         buttonElement.disabled = true;
-    } else {
-        buttonElement.classList.add(config.submitButtonSelector);
+    } else { 
         buttonElement.classList.remove(config.inactiveButtonClass);
         buttonElement.disabled = false;
   };
+
 };
 
 const setEventListeners = (formElement, config) => {

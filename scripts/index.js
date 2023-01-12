@@ -60,17 +60,19 @@ initialCards.forEach((item) => {
   addCard(createCard(item.link, item.name));
 });
 
-function submitAddCardForm (evt) {
+popupAdd.addEventListener('submit', function(evt) {
   evt.preventDefault();
     const cardLink =  popupAddFormLinkInput.value;
     const cardName = popupAddFormTitleInput.value;
-
   addCard(createCard(cardLink, cardName));
-
-  closePopup(popupAdd);
+  
   popupAddFormTitleInput.value = "";
   popupAddFormLinkInput.value = "";
-};
+  const button = evt.submitter;
+  button.disabled = true;
+  button.classList.add('popup__save_invalid');
+  closePopup(popupAdd);
+}); 
 
 function openPopup(item) {
   item.classList.add('popup_opened');
@@ -120,6 +122,6 @@ popups.forEach((popups) => {
   });
 });
 
-popupAdd.addEventListener('submit', submitAddCardForm);
+popupAdd.addEventListener('submit', popupAdd);
 popupEdit.addEventListener('submit', submitEditProfileForm);
 enableValidation(validationConfig);
