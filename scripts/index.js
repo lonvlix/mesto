@@ -1,3 +1,7 @@
+import { Card } from './card.js';
+import { initialCards } from './cards.js';
+import { validationConfig, enableValidation } from './validate.js';
+
 const popups = document.querySelectorAll('.popup');
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
@@ -20,57 +24,35 @@ const buttonActive = popupAddFormArea.querySelector('.popup__save-button');
 
 const elementsContainer = document.querySelector('.elements');
 
-const elementInfo = initialCards.map;
+function createCard (item) {
+  const card = new Card(item, '#templateCard', handleImageClick);
 
-const createCard = (cardLink, cardName) => {
+  const cardElement = card.generateCard();
 
-const elementTemplate = document.querySelector('#element-template').content;
+  elementsContainer.prepend(cardElement);
+}
 
-const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
-
-const elementCardImage = elementCard.querySelector('.element__image');
-
-const elementcardName = elementCard.querySelector('.element__name');
-  elementCardImage.alt = cardName;
-  elementCardImage.src = cardLink;
-  elementcardName.textContent = cardName;
-  
-  elementCard.querySelector('.element__trash').addEventListener('click', function() {
-    elementCard.remove();
-  });
-
-  elementCard.querySelector('.element__like').addEventListener('click', function (event){
-    event.target.classList.toggle('element__like-button_active');
-  });
+initialCards.forEach(createCard);
     
-  elementCardImage.addEventListener('click', function () {
-    openPopup(popupImage);
-    popupImagePlace.src = cardLink;
-    popupImagePlace.alt = cardName;
-    popupImageName.textContent = cardName;
-});
-  return elementCard;
-};
-
-const addCard = (cardNew) => {
-  elementsContainer.prepend(cardNew);
-};
-
-initialCards.forEach((item) => {
-  addCard(createCard(item.link, item.name));
-});
+function handleImageClick (name, link) {
+  openPopup(popupImage);
+    popupImagePlace.src = link;
+    popupImagePlace.alt = name;
+    popupImageName.textContent = name;
+  };
 
 popupAdd.addEventListener('submit', function(evt) {
   evt.preventDefault();
-    const cardLink =  popupAddFormLinkInput.value;
-    const cardName = popupAddFormTitleInput.value;
-  addCard(createCard(cardLink, cardName));
+    const link =  popupAddFormLinkInput.value;
+    const name = popupAddFormTitleInput.value;
+    const item = {name: name, link: link}
   
   popupAddFormTitleInput.value = "";
   popupAddFormLinkInput.value = "";
   const button = evt.submitter;
   button.disabled = true;
   button.classList.add('popup__save_invalid');
+  createCard(item);
   closePopup(popupAdd);
 }); 
 
