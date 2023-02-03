@@ -27,7 +27,7 @@ const elementsContainer = document.querySelector('.elements');
 initialCards.forEach(createCard);
 
 function createCard (item) {
-  const card = new Card(item, '#templateCard', handleImageClick);
+  const card = new Card(item, handleImageClick, '#templateCard');
 
   const cardElement = card.generateCard();
 
