@@ -1,11 +1,11 @@
 import { Card } from './card.js';
 import { initialCards } from './cards.js';
-import { validationConfig, enableValidation } from './validate.js';
+import { validationConfig, formValidator } from './formValidate.js';
 
 const popups = document.querySelectorAll('.popup');
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
-const popupImage = document.querySelector('.popup_image');
+const popupImage = document.querySelector('#popup_image');
 const popupImagePlace = document.querySelector('.popup__img-place');
 const popupImageName = document.querySelector('.popup__name');
 const popupCloseButton = document.querySelectorAll('.popup__close');
@@ -24,6 +24,8 @@ const buttonActive = popupAddFormArea.querySelector('.popup__save-button');
 
 const elementsContainer = document.querySelector('.elements');
 
+initialCards.forEach(createCard);
+
 function createCard (item) {
   const card = new Card(item, '#templateCard', handleImageClick);
 
@@ -32,14 +34,12 @@ function createCard (item) {
   elementsContainer.prepend(cardElement);
 }
 
-initialCards.forEach(createCard);
-    
 function handleImageClick (name, link) {
   openPopup(popupImage);
-    popupImagePlace.src = link;
-    popupImagePlace.alt = name;
-    popupImageName.textContent = name;
-  };
+  popupImagePlace.src = link;
+  popupImagePlace.alt = name;
+  popupImageName.textContent = name;
+};
 
 popupAdd.addEventListener('submit', function(evt) {
   evt.preventDefault();
@@ -54,7 +54,9 @@ popupAdd.addEventListener('submit', function(evt) {
   button.classList.add('popup__save_invalid');
   createCard(item);
   closePopup(popupAdd);
-}); 
+});
+
+
 
 function openPopup(item) {
   item.classList.add('popup_opened');
@@ -70,10 +72,12 @@ profileEditOpenButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInput.value = userProfile.textContent;
   textInput.value = userText.textContent;
+  addFormValidator.resetValidation();
 });
 
 formAddOpenButton.addEventListener('click', function() {
   openPopup(popupAdd);
+  editProfileFormValidator.resetValidation();
 });
 
 function submitEditProfileForm (evt) {
@@ -104,6 +108,12 @@ popups.forEach((popups) => {
   });
 });
 
-popupAdd.addEventListener('submit', popupAdd);
-popupEdit.addEventListener('submit', submitEditProfileForm);
-enableValidation(validationConfig);
+const editProfileFormValidator = new formValidator(validationConfig, popupEdit);
+const addFormValidator = new formValidator(validationConfig, popupAdd);
+
+editProfileFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+// popupAdd.addEventListener('submit', popupAdd);
+ popupEdit.addEventListener('submit', submitEditProfileForm);
+// enableValidation(validationConfig);

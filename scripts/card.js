@@ -22,12 +22,11 @@ export class Card {
         this._elementImageCard = this._element.querySelector('.element__image');
         this._elementNameCard = this._element.querySelector('.element__name');
         this._setEventListeners();
+        //добавление названия
+        this._elementNameCard.textContent = this._name;
         //добавление картинки
         this._elementImageCard.src = this._link;
         this._elementImageCard.alt = this._name;
-        //добавление названия
-        this._elementNameCard.textContent = this._name;
-
         return this._element;
     }
 
@@ -43,14 +42,14 @@ export class Card {
 
         this._elementImageCard.addEventListener("click", () => {
             this._handleImageClick(this._name, this._link);
-        });
-    }
-
-    _handleLikeClick() {
-        this._elementLikeCard.classList.toggle('element__like-button_active');
+          });
     }
 
     _handleDeleteClick() {
         this._element.remove();
+    }
+
+    _handleLikeClick() {
+        this._elementLikeCard.classList.toggle('element__like-button_active');
     }
 }
