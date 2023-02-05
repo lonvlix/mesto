@@ -8,7 +8,7 @@ export const validationConfig = {
 };
 
 
-export class formValidator {
+export class FormValidator {
     constructor(config, formElement) {
         this._config = config;
         this._formElement = formElement;
@@ -62,6 +62,10 @@ export class formValidator {
        };
     
      resetValidation() {
+        this._buttonElement.classList.add(this._config.inactiveButtonClass);
+        this._buttonElement.disabled = true;
+     }
+     disabledSubmitButton() {
         this._buttonElement.classList.add(this._config.inactiveButtonClass);
         this._buttonElement.disabled = true;
      }
