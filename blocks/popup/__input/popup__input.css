@@ -16,13 +16,11 @@
 }
 
 .popup__input:invalid:first-child {
-  border-bottom-color: red;
   margin-bottom: 0;
 }
 
 .popup__input:invalid:last-of-type {
   margin-bottom: 0;
-  border-bottom-color: red;
 }
 
 @media screen and (max-width: 426px) {
