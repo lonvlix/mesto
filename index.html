@@ -44,10 +44,10 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__form" name="user-information" action="#" method="get">
                   <input class="popup__input popup__input_type_name" 
-                  type="text" name="text" placeholder="Имя пользователя" id="name-input" value="" minlength="2" maxlength="40" required>
+                  type="text" name="name" placeholder="Имя пользователя" id="name-input" value="" minlength="2" maxlength="40" required>
                   <span class="name-input-error popup__input-error"></span>
                   <input class="popup__input popup__input_type_text" 
-                  type="text" name="text" placeholder="О себе" id="text-input" value="" minlength="2" maxlength="200" required>
+                  type="text" name="about" placeholder="О себе" id="text-input" value="" minlength="2" maxlength="200" required>
                   <span class="text-input-error popup__input-error"></span>
               <button class="popup__save" type="submit">Сохранить</button>
           </form>
@@ -72,7 +72,7 @@
       <figure class="popup__img-container">
         <button class=" popup__close" type="button"></button>
         <img class="popup__img-place" alt="">
-        <figcaption class="popup__name"></figcaption>
+        <h2 class="popup__name"></h2>
       </figure>
     </section>
     <!-- <script type="module" src="./scripts/validate.js"></script> -->

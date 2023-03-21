@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Этот проект \"Место\", сделан в виде соц.сети с возможностью редактирования профиля (можно заменить имя и описание). \r В будущем можно будет добавлять фотографии и лайкать посты.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonvlix/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lonvlix/mesto/issues"
+  },
+  "homepage": "https://github.com/lonvlix/mesto#readme"
+}

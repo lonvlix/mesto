@@ -1,8 +1,9 @@
+
 export class Card {
-    constructor(item, handleImageClick, templateSelector) {
+    constructor(item, handleCardClick, templateSelector) {
         this._name = item.name;
         this._link = item.link;
-        this._handleImageClick = handleImageClick;
+        this._handleCardClick = handleCardClick;
         this._templateSelector = templateSelector;
     }
 
@@ -41,8 +42,9 @@ export class Card {
         });
 
         this._elementImageCard.addEventListener("click", () => {
-            this._handleImageClick(this._name, this._link);
+            this._handleCardClick(this._name, this._link);
           });
+        
     }
 
     _handleDeleteClick() {
@@ -52,4 +54,5 @@ export class Card {
     _handleLikeClick() {
         this._elementLikeCard.classList.toggle('element__like-button_active');
     }
+    
 }
