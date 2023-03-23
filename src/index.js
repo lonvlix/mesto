@@ -1,10 +1,11 @@
-import { Card } from './card.js';
-import { initialCards } from './cards.js';
-import { Section } from './section.js';
-import { PopupWithImage } from './popupWithImage.js';
-import { PopupWithForm } from './popupWithForm.js';
-import { validationConfig, FormValidator } from './formValidate.js';
-import { UserInfo } from './userInfo.js';
+import { Card } from '../script/card.js';
+import { initialCards } from '../script/cards.js';
+import { Section } from '../script/section.js';
+import { PopupWithImage } from '../script/popupWithImage.js';
+import { PopupWithForm } from '../script/popupWithForm.js';
+import { validationConfig, FormValidator } from '../script/formValidate.js';
+import { UserInfo } from '../script/userInfo.js';
+import '../styles/index.css';
 
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
