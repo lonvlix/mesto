@@ -1,12 +1,3 @@
-export const validationConfig = {
-    inputSelector: '.popup__input',
-    formSelector: '.popup__form',
-    submitButtonSelector: '.popup__save',
-    inputErrorClass: 'popup__input-error',
-    errorClass: 'popup__input-error_visible',
-    inactiveButtonClass: 'popup__save_invalid',
-    typeError: 'popup__input_type_error'
-};
 
 
 export class FormValidator {
@@ -63,7 +54,7 @@ export class FormValidator {
        };
     
      resetValidation() {
-        this._buttonElement.classList.add(this._config.inactiveButtonClass);
+        // this._buttonElement.classList.add(this._config.inactiveButtonClass);
         this._buttonElement.disabled = true;
      }
      disabledSubmitButton() {
