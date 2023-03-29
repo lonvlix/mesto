@@ -53,10 +53,6 @@ export class FormValidator {
        });
        };
     
-     resetValidation() {
-        // this._buttonElement.classList.add(this._config.inactiveButtonClass);
-        this._buttonElement.disabled = true;
-     }
      disabledSubmitButton() {
         this._buttonElement.classList.add(this._config.inactiveButtonClass);
         this._buttonElement.disabled = true;

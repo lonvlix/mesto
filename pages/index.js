@@ -1,10 +1,10 @@
 import { Card } from '../src/components/card.js';
-import { initialCards } from '../src/components/utils';
+import { initialCards } from '../src/components/constants';
 import { Section } from '../src/components/section.js';
 import { PopupWithImage } from '../src/components/popupWithImage.js';
 import { PopupWithForm } from '../src/components/popupWithForm.js';
 import { FormValidator } from '../src/components/formValidate.js';
-import { validationConfig } from '../src/components/config.js';
+import { validationConfig } from '../src/components/constants.js';
 import { UserInfo } from '../src/components/userInfo.js';
 import '../pages/index.css';
 
@@ -14,10 +14,8 @@ const formAddOpenButton = document.querySelector('.profile__add-button');
 const profileEditOpenButton = document.querySelector('.profile__edit-button');
 const nameInput = document.querySelector('.popup__input_type_name');
 const textInput = document.querySelector('.popup__input_type_text');
-const userProfile  = document.querySelector('.profile__name');
+const userProfile = document.querySelector('.profile__name');
 const userText = document.querySelector('.profile__text');
-const popupAddFormLinkInput = document.querySelector('.popup__input_type_link');
-const popupAddFormTitleInput = document.querySelector('.popup__input_type_title');
 
 const elementsContainer = document.querySelector('.elements');
 
@@ -46,23 +44,20 @@ function handleCardClick(name, link) {
   popupWithImages.open(name, link);
 }
 
-const popupAddCard = new PopupWithForm('.popup_add', handleFormSubmit);
+const popupAddCard = new PopupWithForm('.popup_add', handleAddFormSubmit);
 
 
-function handleFormSubmit(evt) {
-  const link = popupAddFormLinkInput.value;
-  const name = popupAddFormTitleInput.value;
-  const item = { name: name, link: link }
+function handleAddFormSubmit({ text, link }) {
+  const item = { name: text, link }
   createCard(item);
-  addFormValidator.disabledSubmitButton();
   popupAddCard.close();
-  evt.preventDefault;
 }
 
 popupAddCard.setEventListeners();
 
-formAddOpenButton.addEventListener('click', function () {
+formAddOpenButton.addEventListener('click', function (evt) {
   popupAddCard.open();
+  evt.preventDefault();
 });
 
 const userInfo = new UserInfo('.profile__name', '.profile__text');
@@ -78,8 +73,8 @@ profileEditOpenButton.addEventListener('click', function (evt) {
   evt.preventDefault();
 });
 
-function submitEditProfileForm({name, about}) {
-  userInfo.setUserInfo({name, about});
+function submitEditProfileForm({ name, about }) {
+  userInfo.setUserInfo({ name, about });
   popupEditProfile.close();
 };
 
@@ -89,4 +84,8 @@ const addFormValidator = new FormValidator(validationConfig, popupAdd);
 editProfileFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
+addFormValidator.disabledSubmitButton();
+
 // enableValidation(validationConfig);
+
+// Павел, спасибо вам большое, не встречала еще таких хороших ревьюеров)) надеюсь моя работа попадется вам еще (если, конечно, вы не намучились)
