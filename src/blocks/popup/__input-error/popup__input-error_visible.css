@@ -1,14 +1,3 @@
 .popup__input-error_visible {
-    font-weight: 400;
-    max-height: 30px;
-    margin: 0;
-    margin-bottom: 0;
-    padding: 0;
-    text-overflow: ellipsis;
-    margin-top: 5px;
-    font-size: 12px;
-    line-height: 15px;
-    color: red;
-    text-align: left;
-    min-height: 30px;
-}
+    visibility: visible;
+ }
