@@ -43,16 +43,16 @@ export class Card {
 
         this._elementImageCard.addEventListener("click", () => {
             this._handleCardClick(this._name, this._link);
-          });
-        
+        });
     }
 
-    _handleDeleteClick() {
-        this._element.remove();
-    }
+     _handleDeleteClick() {
+         this._element.remove();
+
+     }
 
     _handleLikeClick() {
         this._elementLikeCard.classList.toggle('element__like-button_active');
     }
-    
+
 }
