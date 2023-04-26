@@ -5,4 +5,4 @@
 
 В проекте были использованы ООП, ES6 Modules, Вебпак.
 
-[Ссылка на сайт](https://lonvlix.github.io/mesto/)
+[Ссылка на сайт](https://lonvlix.github.io/mesto)
