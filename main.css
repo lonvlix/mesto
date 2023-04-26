@@ -18,6 +18,8 @@
 .element__name{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0;max-width:195px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .element__like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;min-height:19px;min-width:22px;padding:0;transition:opacity .5s ease-out}.element__like:not(.element__like_active):hover{opacity:.5}
 .element__like-button_active{background:url(e787eeb70bb65b7b453a.svg)}
+.element__like-counter{font-size:13px;font-weight:400;line-height:16px;margin:0;padding-top:3px;text-align:center}
+.element__like-info{align-items:center;display:flex;flex-direction:column;justify-content:center}
 .element__image{cursor:pointer;display:flex;height:282px;-o-object-fit:cover;object-fit:cover;transition:opacity .5s ease-out;width:282px}.element__image:not(.element__like_active):hover{opacity:.5}
 .element__trash{background:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-size:cover;border:none;box-sizing:border-box;cursor:pointer;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px}
 .footer{margin:0 auto;padding-bottom:60px;padding-top:67px}@media screen and (max-width:426px){.footer{padding-bottom:36px;padding-left:19px;padding-top:0}}
