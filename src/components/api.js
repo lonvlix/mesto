@@ -8,7 +8,6 @@ export class Api {
     if(res.ok) {
       return res.json()
     }
-  
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
@@ -17,7 +16,6 @@ export class Api {
       method: "GET",
       headers: this._headers
     })
-
     .then(res => this._checkResponse(res));
   }
 
@@ -35,7 +33,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: item.name,
-        about: item.about
+        about: item.text
       })
     })
     .then(res => this._checkResponse(res));
@@ -50,6 +48,40 @@ export class Api {
       })
     })
     .then(res => this._checkResponse(res));
+  }
+
+  addNewCard(item) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: item.name,
+        link: item.link
+      })
+    })
+    .then(res => this._checkResponse(res));
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => this._checkResponse(res));
+  }
+
+  setLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then(res => this._checkResponse(res));
+  }
+
+  deleteLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(res => this._checkResponse(res));
   }
 
 }

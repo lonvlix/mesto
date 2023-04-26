@@ -8,8 +8,9 @@ import { FormValidator } from '../src/components/formValidate.js';
 import { config } from '../src/components/utils/constants.js';
 import { UserInfo } from '../src/components/userInfo.js';
 import '../pages/index.css';
-import { PopupWithConfirmation } from '../src/components/PopupWithConfirmation.js';
+import { PopupWithConfirm } from '../src/components/PopupWithConfirm.js';
 import { Api } from '../src/components/api.js';
+import { data } from 'autoprefixer';
 
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
@@ -34,10 +35,10 @@ const api = new Api({
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
-    const [item] = res;
+    const [userData, cardsArray] = res;
 
-    userInfo.setUserInfo(item);
-    section.renderItems(item);
+    userInfo.setUserInfo(userData);
+    section.renderItems(cardsArray);
   })
   .catch(err => console.log(err));
 
@@ -45,17 +46,21 @@ function createCard(item) {
   const card = new Card(
     item,
     handleCardClick,
-    '#element-template'
+    handleLikeClick,
+    '#element-template',
+     handleConfirmDelete, 
+     handleDeleteCard, 
+     userInfo.getUserId()
   );
-  const cardElement = card.generateCard();
-  elementsContainer.prepend(cardElement);
+  return card.generateCard();
+
 }
 
-const section = new Section({
-  renderer: item => {
-    section.addItem(createCard(item))
-  },
-}, elementsContainer
+const section = new Section(
+  (item) => {
+    const card = createCard(item)
+    section.addItem(card)
+  }, elementsContainer
 )
 
 // initialCards.forEach(createCard);
@@ -67,15 +72,26 @@ function handleCardClick(name, link) {
   popupWithImages.open(name, link);
 }
 
-const popupAddCard = new PopupWithForm('.popup_add', handleAddFormSubmit);
-
-function handleAddFormSubmit({ text, link }) {
-  const data = { name: text, link }
-  createCard(data);
-  popupAddCard.close();
+const popupAddCard = new PopupWithForm('.popup_add', item => {
+  api.addNewCard(item)
+    .then((res) => {
+      section.addItem(createCard(res))
+      popupAddCard.close();
+    })
+    .catch(err => console.log(`Ошибка: ${err}`))
+   .finally(() => {
+     popupAddCard.stopLoading();
+   })
 }
+);
 
 popupAddCard.setEventListeners();
+
+// function handleAddFormSubmit({ text, link }) {
+//   const data = { name: text, link }
+//   createCard(data);
+//   popupAddCard.close();
+// }
 
 formAddOpenButton.addEventListener('click', function () {
   popupAddCard.open();
@@ -98,24 +114,62 @@ function submitEditProfileForm({ name, about }) {
   popupEditProfile.close();
 };
 
-const popupUpdateAvatar = new PopupWithForm('.popup_update', profileUpdateAvatarButton);
+const popupUpdateAvatar = new PopupWithForm('.popup_update', item => {
+  api.updateAvatar(item)
+    .then((item) => {
+      userInfo.setUserInfo(item)
+      console.log(item)
+      popupUpdateAvatar.close()
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`))
+   .finally(() => {
+     popupUpdateAvatar.stopLoading();
+})
+});
+
 popupUpdateAvatar.setEventListeners();
 
 profileUpdateAvatarButton.addEventListener('click', function () {
   popupUpdateAvatar.open();
 });
 
-const PopupWithConfirm = new PopupWithConfirmation('.popup_sure', handleSubmit => {
-  api.removeCard(cardId)
+const popupWithConfirm = new PopupWithConfirm('.popup_sure', card => {
+  api.deleteCard(card._id)
     .then(() => {
-      element.remove();
-      element = null;
-      PopupWithConfirm.close();
+      handleDeleteClick(card)
     })
-    .catch((err) => console.log(err));
-}
-);
+    .catch(err => console.log(`Ошибка: ${err}`))
+});
 
+function handleConfirmDelete(card) {
+  popupWithConfirm.setDeleteCard(card);
+  popupWithConfirm.open();
+}
+
+function handleDeleteCard(cardElement) {
+  cardElement.handleDeleteClick();
+  popupWithConfirm.close();
+}
+
+function handleLikeClick(card) {
+  if (card.isLike) {
+    api.deleteLike(card._id)
+    .then(res => {
+      card.numberOfLikes(res.likes);
+      card.likeStatus();
+      card.toggleLike();
+    })
+    .catch(err => console.log(`Ошибка: ${err}`));
+  } else {
+    api.setLike(card._id)
+    .then(res => {
+      card.numberOfLikes(res.likes);
+      card.likeStatus();
+      card.toggleLike();
+    })
+    .catch(err => console.log(`Ошибка: ${err}`));
+  }
+}
 
 
 const editProfileFormValidator = new FormValidator(config, popupEdit);
