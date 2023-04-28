@@ -1,16 +1,13 @@
-import { Card } from '../src/components/card.js';
-// import { initialCards } from '../src/components/utils/constants.js';
-import { Section } from '../src/components/section.js';
-import { PopupWithImage } from '../src/components/popupWithImage.js';
-import { PopupWithForm } from '../src/components/popupWithForm.js';
-import { Popup } from '../src/components/popup.js'
-import { FormValidator } from '../src/components/formValidate.js';
-import { config } from '../src/components/utils/constants.js';
-import { UserInfo } from '../src/components/userInfo.js';
-import '../pages/index.css';
-import { PopupWithConfirm } from '../src/components/PopupWithConfirm.js';
-import { Api } from '../src/components/api.js';
-import { data } from 'autoprefixer';
+import { Card } from '../components/card.js';
+import { Section } from '../components/section.js';
+import { PopupWithImage } from '../components/popupWithImage.js';
+import { PopupWithForm } from '../components/popupWithForm.js';
+import { FormValidator } from '../components/formValidate.js';
+import { config } from '../components/utils/constants.js';
+import { UserInfo } from '../components/userInfo.js';
+import './index.css';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
+import { Api } from '../components/api.js';
 
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
@@ -18,7 +15,6 @@ const popupUpdate = document.querySelector('.popup_update');
 const formAddOpenButton = document.querySelector('.profile__add-button');
 const profileEditOpenButton = document.querySelector('.profile__edit-button');
 const profileUpdateAvatarButton = document.querySelector('.profile__avatar');
-const elementDelete = document.querySelector('.element__trash');
 const nameInput = document.querySelector('.popup__input_type_name');
 const textInput = document.querySelector('.popup__input_type_text');
 const elementsContainer = document.querySelector('.elements');
@@ -97,7 +93,7 @@ formAddOpenButton.addEventListener('click', function () {
   popupAddCard.open();
 });
 
-const userInfo = new UserInfo('.profile__name', '.profile__text');
+const userInfo = new UserInfo('.profile__name', '.profile__text', '.profile__avatar');
 
 const popupEditProfile = new PopupWithForm('.popup_edit', submitEditProfileForm);
 popupEditProfile.setEventListeners();
@@ -170,7 +166,6 @@ function handleLikeClick(card) {
     .catch(err => console.log(`Ошибка: ${err}`));
   }
 }
-
 
 const editProfileFormValidator = new FormValidator(config, popupEdit);
 const addFormValidator = new FormValidator(config, popupAdd);

@@ -11,6 +11,7 @@ export class Card {
         this._handleDeleteCard = handleDeleteCard;
         this._owner = item.owner;
         this._userId = userId;
+        this._isLike = false;
         this._id = item._id;
     }
 
@@ -39,6 +40,11 @@ export class Card {
 
         if (this._userId !== this._owner._id) this._elementDeleteCard.remove();
 
+        if (this._likes.find(item => item._id === this._userId)) {
+            this._elementLikeCard.classList.add('place__like-button_active');
+            this._isLike = true;
+        }
+
         return this._element;
     }
 
@@ -57,12 +63,12 @@ export class Card {
         });
     }
 
-    _handleDeleteClick() {
-        this._element.remove();
-    }
-
     get isLike() {
         return this._isLike;
+    }
+
+    _handleDeleteClick() {
+        this._element.remove();
     }
 
     numberOfLikes(newLikes) {
@@ -76,12 +82,12 @@ export class Card {
 
     toggleLike() {
         this._elementLikeCard.classList.toggle('element__like-button_active');
-      }
+    }
 
     toggleLikeCard(item) {
         this._likes = item.likes;
         this._elementLike.textContent = this._likes.length;
         this._elementLikeCard.classList.toggle('element__like-button_active');
-      }
+    }
 
 }

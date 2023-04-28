@@ -1,7 +1,7 @@
 export class Api {
-  constructor(config) {
-    this._url = config.url;
-    this._headers = config.headers;
+  constructor(options) {
+    this._url = options.url;
+    this._headers = options.headers;
   }
 
   _checkResponse(res) {
@@ -15,6 +15,18 @@ export class Api {
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers
+    })
+    .then(res => this._checkResponse(res));
+  }
+
+  addNewCard(item) {
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: item.name,
+        link: item.link
+      })
     })
     .then(res => this._checkResponse(res));
   }
@@ -45,18 +57,6 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         avatar: item.avatar
-      })
-    })
-    .then(res => this._checkResponse(res));
-  }
-
-  addNewCard(item) {
-    return fetch(`${this._url}/cards`, {
-      method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: item.name,
-        link: item.link
       })
     })
     .then(res => this._checkResponse(res));
