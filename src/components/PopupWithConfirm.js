@@ -9,13 +9,11 @@ export class PopupWithConfirm extends Popup {
     }
 
     _setEventListeners() {
-        super.setEventListeners()
-
+        super.setEventListeners();
         this._button.addEventListener('click', () => {
             this._handleFormSubmit(this._card)
         })
     }
-
 
     _setDeleteCard(card) {
         this._card = card;

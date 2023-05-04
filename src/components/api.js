@@ -24,7 +24,7 @@ export class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: item.name,
+        name: item.text,
         link: item.link
       })
     })
@@ -45,7 +45,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: item.name,
-        about: item.text
+        about: item.about
       })
     })
     .then(res => this._checkResponse(res));
