@@ -67,9 +67,9 @@ export class Card {
         return this._isLike;
     }
 
-    _deleteCard() {
+    _handleDeleteCard() {
         this._element.remove();
-        this._element = null;
+        // this._element = null;
     }
 
     numberOfLikes(newLikes) {

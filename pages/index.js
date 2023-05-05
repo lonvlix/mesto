@@ -128,7 +128,7 @@ profileUpdateAvatarButton.addEventListener('click', function () {
 });
 
 const popupWithConfirm = new PopupWithConfirm('.popup_sure', card => {
-  api.deleteCard(card._id)
+  api.deleteCard(element._id)
     .then(() => {
       handleDeleteCard(card)
     })
@@ -159,6 +159,7 @@ popupWithImages.setEventListeners();
 popupUpdateAvatar.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
+popupWithConfirm._setEventListeners();
 
 const editProfileFormValidator = new FormValidator(config, popupEdit);
 const addFormValidator = new FormValidator(config, popupAdd);
