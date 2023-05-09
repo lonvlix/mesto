@@ -1,17 +1,18 @@
-import { Card } from '../src/components/card.js';
-import { Section } from '../src/components/section.js';
-import { PopupWithImage } from '../src/components/popupWithImage.js';
-import { PopupWithForm } from '../src/components/popupWithForm.js';
-import { FormValidator } from '../src/components/formValidate.js';
-import { config } from '../src/components/utils/constants.js';
-import { UserInfo } from '../src/components/userInfo.js';
+import { Card } from '../components/card.js';
+import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { FormValidator } from '../components/FormValidate.js';
+import { config } from '../components/utils/constants.js';
+import { UserInfo } from '../components/UserInfo.js';
 import './index.css';
-import { PopupWithConfirm } from '../src/components/PopupWithConfirm.js';
-import { Api } from '../src/components/api.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
+import { Api } from '../components/Api.js';
 
 const popupAdd = document.querySelector('.popup_add');
 const popupEdit = document.querySelector('.popup_edit');
 const popupUpdate = document.querySelector('.popup_update');
+const popupSure = document.querySelector('.popup_sure');
 const formAddOpenButton = document.querySelector('.profile__add-button');
 const profileEditOpenButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -44,15 +45,15 @@ function createCard(item) {
     handleCardClick,
     handleLikeClick,
     '#element-template',
-     handleConfirmDelete,
-     handleDeleteCard,
-     userInfo.getUserId()
+    handleConfirmDelete,
+    handleDeleteCard,
+    userInfo.getUserId()
   );
   return card.generateCard();
 }
 
-function handleConfirmDelete(card) {
-  popupWithConfirm.setDeleteCard(card);
+function handleConfirmDelete(element) {
+  popupWithConfirm.setDeleteCard(element);
   popupWithConfirm.open();
 }
 
@@ -81,9 +82,9 @@ const popupAddCard = new PopupWithForm('.popup_add', item => {
       popupAddCard.close();
     })
     .catch(err => console.log(`Ошибка: ${err}`))
-   .finally(() => {
-     popupAddCard.stopLoading();
-   })
+    .finally(() => {
+      popupAddCard.stopLoading();
+    })
 });
 
 formAddOpenButton.addEventListener('click', function () {
@@ -98,17 +99,17 @@ formAddOpenButton.addEventListener('click', function () {
 
 const userInfo = new UserInfo('.profile__name', '.profile__text', '.profile__avatar');
 
-const popupEditProfile = new PopupWithForm('.popup_edit', ({name, about, id}) => {
-    api.setUserInfo({name, about, id})
-      .then((res) => {
-        userInfo.setUserInfo(res);
-        popupEditProfile.close();
-      })
+const popupEditProfile = new PopupWithForm('.popup_edit', ({ name, about, id }) => {
+  api.setUserInfo({ name, about, id })
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      popupEditProfile.close();
+    })
     .catch(err => console.log(`Ошибка: ${err}`))
     .finally(() => {
       popupEditProfile.stopLoading();
     })
-  });
+});
 
 const popupUpdateAvatar = new PopupWithForm('.popup_update', item => {
   api.updateAvatar(item)
@@ -118,19 +119,19 @@ const popupUpdateAvatar = new PopupWithForm('.popup_update', item => {
       popupUpdateAvatar.close()
     })
     .catch((err) => console.log(`Ошибка: ${err}`))
-   .finally(() => {
-     popupUpdateAvatar.stopLoading();
-})
+    .finally(() => {
+      popupUpdateAvatar.stopLoading();
+    })
 });
 
 profileUpdateAvatarButton.addEventListener('click', function () {
   popupUpdateAvatar.open();
 });
 
-const popupWithConfirm = new PopupWithConfirm('.popup_sure', card => {
+const popupWithConfirm = new PopupWithConfirm('.popup_sure', element => {
   api.deleteCard(element._id)
     .then(() => {
-      handleDeleteCard(card)
+      handleDeleteCard(element)
     })
     .catch(err => console.log(`Ошибка: ${err}`))
 });
@@ -138,20 +139,20 @@ const popupWithConfirm = new PopupWithConfirm('.popup_sure', card => {
 function handleLikeClick(card) {
   if (card.isLike) {
     api.deleteLike(card._id)
-    .then(res => {
-      card.numberOfLikes(res.likes);
-      card.likeStatus();
-      card.toggleLike();
-    })
-    .catch(err => console.log(`Ошибка: ${err}`));
+      .then(res => {
+        card.numberOfLikes(res.likes);
+        card.likeStatus();
+        card.toggleLike();
+      })
+      .catch(err => console.log(`Ошибка: ${err}`));
   } else {
     api.setLike(card._id)
-    .then(res => {
-      card.numberOfLikes(res.likes);
-      card.likeStatus();
-      card.toggleLike();
-    })
-    .catch(err => console.log(`Ошибка: ${err}`));
+      .then(res => {
+        card.numberOfLikes(res.likes);
+        card.likeStatus();
+        card.toggleLike();
+      })
+      .catch(err => console.log(`Ошибка: ${err}`));
   }
 }
 
@@ -159,11 +160,12 @@ popupWithImages.setEventListeners();
 popupUpdateAvatar.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
-popupWithConfirm._setEventListeners();
+popupWithConfirm.setEventListeners();
 
 const editProfileFormValidator = new FormValidator(config, popupEdit);
 const addFormValidator = new FormValidator(config, popupAdd);
 const avatarFormValidator = new FormValidator(config, popupUpdate);
+const deletePopupFormValidator = new FormValidator(config, popupSure)
 
 profileAvatarEdit.addEventListener('click', () => {
   avatarFormValidator.toggleButtonState();
@@ -177,15 +179,10 @@ profileEditOpenButton.addEventListener('click', function () {
   popupEditProfile.open();
 });
 
-// profileAddButton.addEventListener('click', () => {
-//   addFormValidator.toggleButtonState();
-//   addFormValidator.removeValidation();
-//   popupAddCard.open();
-// });
-
 editProfileFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
+deletePopupFormValidator.enableValidation();
 
 // profileUpdateAvatarFormValidator.disabledSubmitButton();
 // addFormValidator.disabledSubmitButton();

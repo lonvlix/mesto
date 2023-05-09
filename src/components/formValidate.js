@@ -16,8 +16,8 @@ export class FormValidator {
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.classList.remove(this._config.errorClass);
-    errorElement.textContent = '';
     inputElement.classList.remove(this._config.typeError);
+    errorElement.textContent = '';
   };
 
   _checkInputValidity(inputElement) {
@@ -27,6 +27,12 @@ export class FormValidator {
       this._showInputError(inputElement);
     };
   };
+
+  checkInputValidity() {
+    this._inputList.forEach(inputElement => {
+      this._checkInputValidity(inputElement);
+    })
+  }
 
   toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {

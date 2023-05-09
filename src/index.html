@@ -45,11 +45,11 @@
       <div class="popup__container">
           <button class="popup__close" type="button"></button>
           <h2 class="popup__title">Обновить аватар</h2>
-          <form class="popup__form" name="user-information" action="#" method="get">
+          <form class="popup__form" name="user-information" action="#">
             <input class="popup__input popup__input_type_link" 
-            name="link" placeholder="Ссылка на картинку" id="link" value="" type="url" required>
-            <span class="link-input-error popup__input-error"></span>
-              <button class="popup__save" type="submit">Сохранить</button>
+            name="avatar" placeholder="Ссылка на картинку" id="avatar-input" value="" type="url" required>
+            <span class="avatar-input-error popup__input-error"></span>
+              <button class="popup__save popup__save_invalid" type="submit">Сохранить</button>
           </form>
       </div>
     </section>

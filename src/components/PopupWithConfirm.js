@@ -1,4 +1,4 @@
-import { Popup } from "./popup";
+import { Popup } from "./Popup";
 import { config } from "./utils/constants";
 
 export class PopupWithConfirm extends Popup {
@@ -8,14 +8,14 @@ export class PopupWithConfirm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
     }
 
-    _setEventListeners() {
+    setEventListeners() {
         super.setEventListeners();
         this._button.addEventListener('click', () => {
-            this._handleFormSubmit(this._card)
+            this._handleFormSubmit(this._element)
         })
     }
 
-    _setDeleteCard(card) {
-        this._card = card;
+    setDeleteCard(element) {
+        this._element = element;
     }
 }
