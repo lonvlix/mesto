@@ -6,7 +6,7 @@ import { FormValidator } from '../components/FormValidate.js';
 import { config } from '../components/utils/constants.js';
 import { UserInfo } from '../components/UserInfo.js';
 import './index.css';
-import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { Api } from '../components/Api.js';
 
 const popupAdd = document.querySelector('.popup_add');
@@ -91,12 +91,6 @@ formAddOpenButton.addEventListener('click', function () {
   popupAddCard.open();
 });
 
-//  function handleAddFormSubmit({ text, link }) {
-//    const data = { name: text, link }
-//    createCard(data);
-//    popupAddCard.close();
-//  }
-
 const userInfo = new UserInfo('.profile__name', '.profile__text', '.profile__avatar');
 
 const popupEditProfile = new PopupWithForm('.popup_edit', ({ name, about, id }) => {
@@ -128,7 +122,7 @@ profileUpdateAvatarButton.addEventListener('click', function () {
   popupUpdateAvatar.open();
 });
 
-const popupWithConfirm = new PopupWithConfirm('.popup_sure', element => {
+const popupWithConfirm = new PopupWithConfirmation('.popup_sure', element => {
   api.deleteCard(element._id)
     .then(() => {
       handleDeleteCard(element)
@@ -183,8 +177,3 @@ editProfileFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
 deletePopupFormValidator.enableValidation();
-
-// profileUpdateAvatarFormValidator.disabledSubmitButton();
-// addFormValidator.disabledSubmitButton();
-
-// enableValidation(validationConfig);
